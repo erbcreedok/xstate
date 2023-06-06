@@ -30,7 +30,7 @@ const App = () => {
 
 	return (
 		<Container>
-			<Flex height="720px" sx={{ border: '1px solid lightgray' }}>
+			<Flex height="720px" sx={{ border: '1px solid lightgray', my: 4 }}>
 				<Flex flexGrow={1}>
 					<YMaps>
 						<Map defaultState={defaultState} width="100%" height="100%">
@@ -73,6 +73,15 @@ const App = () => {
 					))}
 				</List>
 			</Flex>
+			{/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
+			<iframe
+				width="100%"
+				height="480"
+				src="https://my.matterport.com/show?m=SxQL3iGyoDo&play=1&applicationKey=r4g2a1zpp98r895352itmgr7c"
+				frameBorder="0"
+				allow="fullscreen; vr"
+				id="showcase-iframe"
+			/>
 		</Container>
 	)
 }
