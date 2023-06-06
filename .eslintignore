@@ -1,0 +1,8 @@
+build
+dist
+node_modules
+packages
+*.min.js
+src/setupTests.ts
+src/reportWebVitals.ts
+src/react-app-env.d.ts
