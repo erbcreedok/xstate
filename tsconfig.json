@@ -17,5 +17,6 @@
 		"jsx": "react-jsx",
 		"baseUrl": "."
 	},
-	"include": ["./"]
+	"include": ["./"],
+	"exclude": ["./vite.config.ts", "./node_modules"]
 }

@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker'
 
+import { getApartmentImage } from './getApartmentImage'
+
 const KZT = new Intl.NumberFormat('ru-RU', {
 	style: 'currency',
 	currency: 'KZT',
@@ -12,7 +14,7 @@ export const getApartments = () => {
 			latitude: faker.location.latitude({ max: 43.35, min: 43.2 }),
 			longitude: faker.location.longitude({ max: 76.95, min: 76.7 }),
 		},
-		image: faker.image.city(300, 300, true),
+		image: getApartmentImage(),
 		price: KZT.format(
 			Math.round(
 				Number(

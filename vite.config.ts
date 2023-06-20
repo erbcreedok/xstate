@@ -1,5 +1,3 @@
-import path from 'path'
-
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
@@ -9,7 +7,7 @@ import checker from 'vite-plugin-checker'
 
 export default defineConfig(({ command, mode }) => {
 	const env = Object.entries(loadEnv(mode, process.cwd(), 'REACT')).reduce<
-		Record<string, any>
+		Record<string, unknown>
 	>(
 		(acc, [key, value]) => ({
 			...acc,
