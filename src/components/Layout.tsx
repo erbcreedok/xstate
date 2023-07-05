@@ -6,6 +6,8 @@ import {
 	AppBar,
 	Toolbar,
 	Button,
+	AppBarProps,
+	BoxProps,
 } from '@mui/material'
 
 import { routes } from '../constants/routes'
@@ -13,7 +15,17 @@ import { routes } from '../constants/routes'
 import { Flex } from './Flex'
 import { LinkBase } from './LinkBase'
 
-export const Layout: FC<PropsWithChildren> = ({ children }) => (
+type LayoutProps = {
+	appBarProps?: AppBarProps
+	footerProps?: BoxProps
+	background?: string
+}
+export const Layout: FC<PropsWithChildren<LayoutProps>> = ({
+	appBarProps,
+	footerProps,
+	background,
+	children,
+}) => (
 	<Box
 		sx={{
 			display: 'flex',
@@ -22,7 +34,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
 			minHeight: '100vh',
 		}}
 	>
-		<AppBar position="static">
+		<AppBar position="static" sx={{ background }} {...appBarProps}>
 			<Container>
 				<Toolbar disableGutters>
 					<LinkBase to={routes.home()}>
@@ -35,11 +47,13 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
 		</AppBar>
 		<Box sx={{ flexGrow: 1 }}>{children}</Box>
 		<Box
+			{...footerProps}
 			sx={{
 				py: 10,
 				position: 'relative',
 				bottom: 0,
-				backgroundColor: 'primary.main',
+				backgroundColor: background ?? 'primary.main',
+				...(footerProps?.sx ?? {}),
 			}}
 		>
 			<Typography variant="h3" color="#bddeff" align="center">
@@ -49,7 +63,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
 				Don't miss out on your dream apartment. Register today and start
 				exploring your future neighborhood from the comfort of your home.
 			</Typography>
-			<Flex sx={{ mt: 2, gap: '8px' }} alignItems="center" justifyContent="center">
+			<Flex
+				sx={{ mt: 2, gap: '8px' }}
+				alignItems="center"
+				justifyContent="center"
+			>
 				<Button variant="contained" color="info">
 					Login
 				</Button>
