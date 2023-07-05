@@ -1,4 +1,4 @@
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { Placemark, YMaps, Map, Clusterer } from '@pbe/react-yandex-maps'
 import React, { useRef, useState } from 'react'
 import ymaps, { IEvent } from 'yandex-maps'
@@ -36,66 +36,71 @@ export const Home = () => {
 	}
 
 	return (
-		<Container>
-			<Flex
-				height="720px"
-				sx={{
-					borderRadius: '8px',
-					p: '8px',
-					gap: '8px',
-					my: 4,
-				}}
-			>
+		<Box sx={{ background: '#359bff', overflow: 'auto' }}>
+			<Container>
 				<Flex
-					flexGrow={1}
-					sx={{ borderRadius: '8px', overflow: 'hidden', boxShadow }}
-				>
-					<YMaps>
-						<Map
-							instanceRef={(ref) => {
-								if (ref) {
-									mapRef.current = ref
-									ref.events.add('boundschange', handleBoundChange)
-								}
-							}}
-							defaultState={defaultState}
-							width="100%"
-							height="100%"
-						>
-							<Clusterer
-								options={{
-									preset: 'islands#invertedVioletClusterIcons',
-									groupByCoordinates: false,
-								}}
-							>
-								{apartments.map((apartment) => (
-									<Placemark
-										key={apartment.id}
-										geometry={[
-											apartment.location.latitude,
-											apartment.location.longitude,
-										]}
-										properties={{
-											hintContent: `${apartment.address}, Price: ${apartment.price}`,
-										}}
-									/>
-								))}
-							</Clusterer>
-						</Map>
-					</YMaps>
-				</Flex>
-				<ApartmentsList
+					height="720px"
 					sx={{
-						flexShrink: 0,
-						flexGrow: 0,
-						width: '320px',
-						overflow: 'auto',
-						gap: '4px',
-						background: '#FFFFFF',
+						borderRadius: '8px',
+						p: '8px',
+						gap: '8px',
+						my: 4,
 					}}
-					apartments={visibleApartments}
-				/>
-			</Flex>
-		</Container>
+				>
+					<Flex
+						flexGrow={1}
+						sx={{ borderRadius: '8px', overflow: 'hidden', boxShadow }}
+					>
+						<YMaps>
+							<Map
+								instanceRef={(ref) => {
+									if (ref) {
+										mapRef.current = ref
+										ref.events.add('boundschange', handleBoundChange)
+									}
+								}}
+								defaultState={defaultState}
+								width="100%"
+								height="100%"
+							>
+								<Clusterer
+									options={{
+										preset: 'islands#invertedVioletClusterIcons',
+										groupByCoordinates: false,
+									}}
+								>
+									{apartments.map((apartment) => (
+										<Placemark
+											key={apartment.id}
+											geometry={[
+												apartment.location.latitude,
+												apartment.location.longitude,
+											]}
+											properties={{
+												hintContent: `${apartment.address}, Price: ${apartment.price}`,
+											}}
+										/>
+									))}
+								</Clusterer>
+							</Map>
+						</YMaps>
+					</Flex>
+					<ApartmentsList
+						sx={{
+							flexShrink: 0,
+							flexGrow: 0,
+							width: '320px',
+							overflow: 'auto',
+							gap: '4px',
+							background: '#FFFFFF',
+							borderRadius: '8px',
+							p: '4px',
+							boxShadow,
+						}}
+						apartments={visibleApartments}
+					/>
+				</Flex>
+			</Container>
+		</Box>
 	)
 }

@@ -58,15 +58,10 @@ export const ApartmentDetail = () => {
 						<Typography variant="h6">{apartmentDetail.price}$</Typography>
 					</Box>
 				</Box>
-				<Carousel>
-					{apartmentDetail.images.map((image, index) => (
-						<div key={index}>
-							<img src={image} alt={`Apartment ${index}`} />
-						</div>
-					))}
-				</Carousel>
+				<Box sx={{ flexGrow: 1 }}>
+					<ApartmentViewer sx={{ height: '500px', width: '100%' }} />
+				</Box>
 			</Box>
-			<ApartmentViewer />
 		</Container>
 	)
 }

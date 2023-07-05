@@ -1,1 +1,1 @@
-export const boxShadow = '0px 5px 10px rgba(0, 0, 0, 0.1)'
+export const boxShadow = '0px 5px 20px 1px rgb(12, 110, 202)'

@@ -1,11 +1,19 @@
-import React, { FC } from 'react'
-import { Box, Container, Typography, AppBar, Toolbar } from '@mui/material'
+import React, { FC, PropsWithChildren } from 'react'
+import {
+	Box,
+	Container,
+	Typography,
+	AppBar,
+	Toolbar,
+	Button,
+} from '@mui/material'
 
 import { routes } from '../constants/routes'
 
+import { Flex } from './Flex'
 import { LinkBase } from './LinkBase'
 
-export const Layout: FC = ({ children }) => (
+export const Layout: FC<PropsWithChildren> = ({ children }) => (
 	<Box
 		sx={{
 			display: 'flex',
@@ -28,16 +36,27 @@ export const Layout: FC = ({ children }) => (
 		<Box sx={{ flexGrow: 1 }}>{children}</Box>
 		<Box
 			sx={{
-				p: 2,
+				py: 10,
 				position: 'relative',
 				bottom: 0,
-				width: '100%',
 				backgroundColor: 'primary.main',
 			}}
 		>
-			<Typography variant="body2" color="text.secondary" align="center">
-				Footer Content Here
+			<Typography variant="h3" color="#bddeff" align="center">
+				Join Today
 			</Typography>
+			<Typography variant="body1" color="white" align="center">
+				Don't miss out on your dream apartment. Register today and start
+				exploring your future neighborhood from the comfort of your home.
+			</Typography>
+			<Flex sx={{ mt: 2, gap: '8px' }} alignItems="center" justifyContent="center">
+				<Button variant="contained" color="info">
+					Login
+				</Button>
+				<Button variant="outlined" color="info" sx={{ background: 'white' }}>
+					Create an account
+				</Button>
+			</Flex>
 		</Box>
 	</Box>
 )
